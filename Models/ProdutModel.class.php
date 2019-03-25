@@ -68,6 +68,20 @@ class ProductClass {
         }
     }
 
+    function FindCountAll(){
+        try {
+            $sql = "SELECT count(p.IdProduct) AS countAll FROM Product p";
+            $query = $this->getConnection()->prepare($sql);
+            $query->execute();
+                    
+            $row = $query->fetch(PDO::FETCH_ASSOC);
+            
+            return $row['countAll'];
+        } catch (PDOException $e) {
+            return "Error!: " . $e->getMessage();
+        }
+    }
+
     function FindById(){
         try {
             $sql = "SELECT 
